@@ -1,0 +1,1 @@
+require("better-type-hover")
