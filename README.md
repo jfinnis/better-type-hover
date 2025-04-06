@@ -7,8 +7,7 @@ Currently, there is no config options to pass to setup.
 Lazy.nvim
 ```lua
 {
-  dir = "~/dev/nvim/better-type-hover",
-  name = "better-type-hover",
+  name = "Sebastian-Nielsen/better-type-hover",
   config = function()
     require("better-type-hover").setup()
   end,
