@@ -2,7 +2,7 @@ This plugin is still work in progress. Feedback is more than welcome.
 
 # Installation
 
-Currently, there is no config options to pas to setup. 
+Currently, there is no config options to pass to setup. 
 
 Lazy.nvim
 ```lua
