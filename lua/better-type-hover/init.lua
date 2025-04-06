@@ -47,12 +47,8 @@ function M.close_secondary_window_if_open()
 	if M.secondary_item == nil then return end
 	local win_id = M.secondary_item.win_id, true
 	local success, err = pcall(function()
-		-- local cursor_pos = vim.api.nvim_win_get_cursor(0)
-		-- local cursor_row, cursor_col = cursor_pos[1], cursor_pos[2]
-		-- local win_ids_key = cursor_row .. ":" .. cursor_col
 		vim.api.nvim_win_close(win_id, true)
 		M.secondary_item = nil
-		-- M.win_ids[win_ids_key] = nil
 	end)
 	if err then
 		vim.notify("close_secondary_window_if_open failed with: " .. vim.inspect(err) .. " " .. vim.inspect(win_id))
@@ -62,12 +58,8 @@ function M.close_main_window_if_open()
 	if M.main_item == nil then return end
 	local win_id = M.main_item.win_id, true
 	local success, err = pcall(function()
-		-- local cursor_pos = vim.api.nvim_win_get_cursor(0)
-		-- local cursor_row, cursor_col = cursor_pos[1], cursor_pos[2]
-		-- local win_ids_key = cursor_row .. ":" .. cursor_col
 		vim.api.nvim_win_close(win_id, true)
 		M.main_item = nil
-		-- M.win_ids[win_ids_key] = nil
 	end)
 	if err then
 		vim.notify("close_secondary_window_if_open failed with: " .. vim.inspect(err) .. " " .. vim.inspect(win_id))
@@ -94,7 +86,7 @@ function M.handle_input(input)
 
 	M.restore_mappings()
 	M.listening_for_input = false
-	vim.notify("Stopped listening")
+	-- vim.notify("Stopped listening")
 end
 
 function M.listen_for_one_input_key()
@@ -210,7 +202,6 @@ function M.showHoverDoc(
 		end
 
 		local win_id = vim.api.nvim_open_win(floating_buf, false, opts)
-		-- M.win_ids[win_ids_key] = win_id
 
 		M.secondary_item = {
 			lines=lines,
@@ -231,7 +222,6 @@ function M.filterForInterfaceOrTypeDeclarations(items)
 	-- Filter only interfaces and types
 	local filtered_items = {}
 	for _, item in ipairs(items) do
-		-- vim.notify("item: "  .. vim.inspect(item))
 		if item.filename then
 			vim.fn.bufload(item.filename)
 			local bufnr = vim.fn.bufnr(item.filename)
@@ -277,7 +267,6 @@ function M.extract_lines_of_nested_type(filename, row, col)
 		local _end = result[1]['targetRange']['end']['line']
 		local lines = vim.api.nvim_buf_get_lines(bufnr, _start, _end + 1, false)
 		win_ids_key =  row .. ":" .. col
-		-- vim.notify("FINAL LINES: " .. vim.inspect(lines))
 		M.showHoverDoc(lines, win_ids_key, 0, false)
 	end)
 end
@@ -567,7 +556,7 @@ function M.show_type_floating(levels_to_show)
 end
 
 function M.setup()
-	vim.keymap.set('n', '<C-P>', function()M.show_type_floating(1)end, { desc = 'Goto Definition (split)' }) -- TODO: Should be 0
+	vim.keymap.set('n', '<C-P>', function()M.show_type_floating(1)end, { desc = 'Goto Definition (split)' })
 end
 
 
