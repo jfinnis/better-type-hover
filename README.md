@@ -21,3 +21,7 @@ Lazy.nvim
   end,
 }
 ```
+
+# Todo:
+
+- [ ] Configure how to treat large interface declarations: Fold some lines or maybe show it all but make the popup scrollable
