@@ -10,14 +10,12 @@ This plugin improves `vim.lsp.buf.hover()` by actually showing the exact declara
 
 # Installation
 
-Currently, there is no config options to pass to setup. 
-
 Lazy.nvim
 ```lua
 {
   "Sebastian-Nielsen/better-type-hover",
   config = function()
-    require("better-type-hover").setup()
+    
   end,
 }
 ```
@@ -25,3 +23,4 @@ Lazy.nvim
 # Todo:
 
 - [ ] Configure how to treat large interface declarations: Fold some lines or maybe show it all but make the popup scrollable
+- [ ] Handle that a nested type is e.g. `style?: StyleHTMLAttributes<HTMLDivElement> & CSSProperties;`. Currently, it only expands the left-most (`StyleHTMLAttributes<HTMLDivElement>` in this case)
