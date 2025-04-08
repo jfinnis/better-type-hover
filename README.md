@@ -49,4 +49,5 @@ require("better-type-hover").setup({
 
 # Todo:
 
-- [ ] Handle that a nested type is e.g. `style?: StyleHTMLAttributes<HTMLDivElement> & CSSProperties;`. Currently, it only expands the left-most (`StyleHTMLAttributes<HTMLDivElement>` in this case). 
+- [ ] Handle that a nested type is e.g. `style?: StyleHTMLAttributes<HTMLDivElement> & CSSProperties;`. Currently, it only expands the left-most (`StyleHTMLAttributes<HTMLDivElement>` in this case).
+- [ ] Feature idea: Be able to indefintely expand nested_types. Show letter-hints in the second window so that you can expand nested_types in the second window. When a nested_type in the second window is requested to be expanded, the content of the second window will be replaced by the requested declaration. 
