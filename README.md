@@ -32,7 +32,7 @@ Lazy.nvim
 
 These are all the default options for reference:
 
-```
+```lua
 require("better-type-hover").setup({
       -- If the declaration in the window is longer than 20 lines remove all lines after the 20th line. 
 	    fold_lines_after_line = 20,
