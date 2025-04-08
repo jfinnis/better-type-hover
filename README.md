@@ -22,6 +22,6 @@ Lazy.nvim
 
 # Todo:
 
-- [ ] Configure how to treat large interface declarations: Fold some lines or maybe show it all but make the popup scrollable
+- [x] Configure how to treat large interface declarations: Fold some lines or maybe show it all but make the popup scrollable
 - [ ] Handle that a nested type is e.g. `style?: StyleHTMLAttributes<HTMLDivElement> & CSSProperties;`. Currently, it only expands the left-most (`StyleHTMLAttributes<HTMLDivElement>` in this case)
-- [ ] reindent declaration in case it is indented
+- [x] reindent declaration in case it is indented
