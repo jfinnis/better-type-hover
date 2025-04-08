@@ -7,6 +7,12 @@ The ts_ls (typescript lsp) `vim.lsp.buf.hover()` is in many cases completely use
 
 This plugin improves `vim.lsp.buf.hover()` by actually showing the exact declaration of the `interface` or `type` (crazy how that's not the default 🤔). 
 
+Additionally, you can press the sign on the line to open a popup with the declaration of the "nested type":
+
+
+![somethign](https://gyazo.com/7ea66b405b1999248e7e145dc90cdd5a.gif)
+
+
 # Installation
 
 Lazy.nvim
