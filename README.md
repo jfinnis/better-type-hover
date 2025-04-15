@@ -14,10 +14,6 @@ Additionally, you can press the sign on the line to open yet another window with
 
 ![somethign](https://gyazo.com/7ea66b405b1999248e7e145dc90cdd5a.gif)
 
-#### Disclaimer
-
-This plugin is really only meant to be used on `interface` or `type` in typescript. It can also be used on pretty much anything else where `vim.lsp.buf.hover()` is applicable. But be aware that if used on anything else that it might not always work, there is simply too many other such cases for me to be able to cover all of them. I intend to slowly add such cases as I discover them. 
-
 # Installation
 
 Lazy.nvim
@@ -36,6 +32,9 @@ These are all the default options for reference:
 
 ```lua
 require("better-type-hover").setup({
+        -- Whether to fallback to the old `vim.lsp.buf.hover()` when triggered on anything but an interface or type
+        -- Strongly adviced to keep this on true as it's not stable when triggered on anything that is not an interface or type.
+	fallback_to_old_on_anything_but_interface_and_type = true,
 	-- If the declaration in the window is longer than 20 lines remove all lines after the 20th line. 
 	fold_lines_after_line = 20,
 	-- The primary key to hit to open the main window
