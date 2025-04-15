@@ -4,7 +4,7 @@ local M = {}
 M.config = {
 	fold_lines_after_line = 20,
 	openTypeDocKeymap = "<C-P>",
-	keys_that_open_nested_types = { 'a', 's', 'h', 'j', 'k', 'l', 'b', 'i', 'e', 'u' },
+	keys_that_open_nested_types = { 'a', 's', 'b', 'i', 'e', 'u', 'r', 'x' },
 	types_to_not_expand = {"string", "number", "boolean", "Date"}
 }
 ---@type nil|integer
@@ -17,7 +17,7 @@ for _, v in ipairs(M.config.keys_that_open_nested_types) do
 	table.insert(M.all_keys, v)
 end
 
-local red_highlight_namespace = vim.api.nvim_create_namespace("red_highlight")
+local selected_key_hint_color_namespace = vim.api.nvim_create_namespace("selected_key_hint_color_namespace")
 
 ---@class Item
 ---@field lines string[]
@@ -170,7 +170,7 @@ function M.handle_input(input)
 
 		for _, win_id in ipairs(M.main_window_key_hint_win_ids) do
 			local buf = vim.api.nvim_win_get_buf(win_id)
-			vim.api.nvim_buf_clear_namespace(buf, red_highlight_namespace, 0, -1)
+			vim.api.nvim_buf_clear_namespace(buf, selected_key_hint_color_namespace, 0, -1)
 		end
 
 		-- vim.notify(vim.inspect(M.main_window_key_hint_win_ids))
@@ -178,7 +178,7 @@ function M.handle_input(input)
 		-- vim.notify("coloring red win_id: " .. tostring(win_id))
 		M.win_id_of_selected_key_hint = win_id
 		local buf = vim.api.nvim_win_get_buf(win_id)
-		vim.api.nvim_buf_add_highlight(buf, red_highlight_namespace, "selected_key_hint_color", 0, 0, -1)
+		vim.api.nvim_buf_add_highlight(buf, selected_key_hint_color_namespace, "selected_key_hint_color", 0, 0, -1)
 	else
 		M.restore_mappings()
 		M.listening_for_input = false
@@ -501,7 +501,7 @@ function M.show_key_hints_in_primary_window(expandable_types)
 	for i, expandable_type in ipairs(expandable_types) do
 		local floating_buf = vim.api.nvim_create_buf(false, true)
 		local key_that_open_nested_type = M.config.keys_that_open_nested_types[i]
-		local lines = {" " .. key_that_open_nested_type .. " " }
+		local lines = {key_that_open_nested_type}
 		-- local lines = {"asdf asdf asdf asdf ", "a dsf asdfj asdsadf ", "klasdflasdfl "}
 		vim.api.nvim_buf_set_lines(floating_buf, 0, -1, false, lines)
 		local opts = {
