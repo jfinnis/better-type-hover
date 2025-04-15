@@ -1,3 +1,10 @@
+---@class config
+---@field fold_lines_after_line integer - default 30
+---@field openTypeDocKeymap string|nil - default <C-P>. Set to '' to disable
+---@field keys_that_open_nested_types string[] - default <C-P>. Set to '' to disable
+---@field types_to_not_expand string[] - if a type is in this list, a type hint letter wont appear next to it in the main_window
+---@field fallback_to_old_on_anything_but_interface_and_type boolean -- default is true
+
 local M = {}
 
 ---@type config
@@ -42,13 +49,6 @@ M.main_window_key_hint_win_ids = {}
 function M.better_type_hover()
 	M.open_primary_window()
 end
-
----@class config
----@field fold_lines_after_line integer - default 30
----@field openTypeDocKeymap string|nil - default <C-P>. Set to '' to disable
----@field keys_that_open_nested_types string[] - default <C-P>. Set to '' to disable
----@field types_to_not_expand string[] - if a type is in this list, a type hint letter wont appear next to it in the main_window
----@field fallback_to_old_on_anything_but_interface_and_type boolean -- default is true
 
 ---@param config config|nil
 function M.setup(config)
