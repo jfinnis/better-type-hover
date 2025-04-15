@@ -47,7 +47,12 @@ require("better-type-hover").setup({
 })
 ```
 
+# Known issues
+
+- [ ] Opening the popup too close to the edge of the screen: https://gyazo.com/df079cebabee1526318c12bf71c5242c
+- [ ] Handle that a nested type is e.g. `style?: StyleHTMLAttributes<HTMLDivElement> & CSSProperties;`. Currently, it only expands the left-most (`StyleHTMLAttributes<HTMLDivElement>` in this case). This one is hard to solve because you could in theory have something like `style?: A & (B | (C & D)) | E & F & ...` and which one is it expected to open here? And how would you prompt the issue to choose one? 
+- [ ] When opening a requested type, it's currently hardcoded to always request the doc-definition at column one of the type, this is incorrect in case of e.g. `JSX.Element` as that would fetch the doc of `JSX` where it instead actually should had returned the doc for `Element`. So insert logic that checks if the type contains a dot and if it does then trigger the doc-definition on the first column to the right of the last dot. https://gyazo.com/be0374a6b75e3086c2dee4d095f24666
+
 # Todo:
 
-- [ ] Handle that a nested type is e.g. `style?: StyleHTMLAttributes<HTMLDivElement> & CSSProperties;`. Currently, it only expands the left-most (`StyleHTMLAttributes<HTMLDivElement>` in this case).
 - [ ] Feature idea: Be able to indefintely expand nested_types. Show letter-hints in the second window so that you can expand nested_types in the second window. When a nested_type in the second window is requested to be expanded, the content of the second window will be replaced by the requested declaration. 
