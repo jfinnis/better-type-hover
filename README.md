@@ -50,7 +50,7 @@ require("better-type-hover").setup({
 # Known issues
 
 - [ ] Opening the popup too close to the edge of the screen: https://gyazo.com/df079cebabee1526318c12bf71c5242c
-- [ ] Handle that a nested type is e.g. `style?: StyleHTMLAttributes<HTMLDivElement> & CSSProperties;`. Currently, it only expands the left-most (`StyleHTMLAttributes<HTMLDivElement>` in this case). This one is hard to solve because you could in theory have something like `style?: A & (B | (C & D)) | E & F & ...` and which one is it expected to open here? And how would you prompt the issue to choose one? 
+- [ ] Handle that a nested type is e.g. `style?: StyleHTMLAttributes<HTMLDivElement> & CSSProperties;`. Currently, it only expands the left-most (`StyleHTMLAttributes<HTMLDivElement>` in this case). This one is hard to solve because you could in theory have something like `style?: A & (B | (C & D)) | E & F & ...` and which one is it expected to open here? And how would you prompt the user to choose one? 
 - [ ] When opening a requested type, it's currently hardcoded to always request the doc-definition at column one of the type, this is incorrect in case of e.g. `JSX.Element` as that would fetch the doc of `JSX` where it instead actually should had returned the doc for `Element`. So insert logic that checks if the type contains a dot and if it does then trigger the doc-definition on the first column to the right of the last dot. https://gyazo.com/be0374a6b75e3086c2dee4d095f24666
 - [ ] If you put a key that expects a motion immediately afterwards (e.g. `d`, `c`, `g`, `f`, `t`) into `keys_that_open_nested_types`, then you are going to experience a delay when triggering it: https://gyazo.com/a28e06b2689a99264882ff7b67297009. 
 
