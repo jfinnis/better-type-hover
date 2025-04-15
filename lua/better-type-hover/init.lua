@@ -4,6 +4,7 @@ local M = {}
 M.config = {
 	fold_lines_after_line = 20,
 	openTypeDocKeymap = "<C-P>",
+	fallback_to_old_on_anything_but_interface_and_type = true,
 	keys_that_open_nested_types = { 'a', 's', 'b', 'i', 'e', 'u', 'r', 'x' },
 	types_to_not_expand = {"string", "number", "boolean", "Date"}
 }
@@ -44,6 +45,7 @@ end
 ---@field openTypeDocKeymap string|nil - default <C-P>. Set to '' to disable
 ---@field keys_that_open_nested_types string[] - default <C-P>. Set to '' to disable
 ---@field types_to_not_expand string[] - if a type is in this list, a type hint letter wont appear next to it in the main_window
+---@field fallback_to_old_on_anything_but_interface_and_type boolean -- default is true
 
 ---@param config config|nil
 function M.setup(config)
@@ -627,7 +629,6 @@ end
 function M.open_primary_window()
 	vim.lsp.buf.definition({
 		on_list = function(options)
-			local POSITION_PARAMS = vim.lsp.util.make_position_params()
 			local items = options.items or {}
 
 			if #items > 0 then
@@ -638,6 +639,12 @@ function M.open_primary_window()
 					M.extractDeclarations(interfaceOrTypeItemsOnly)
 					return -- TODO remove this
 				end
+
+				if M.config.fallback_to_old_on_anything_but_interface_and_type == true then
+					vim.lsp.buf.hover()
+					return
+				end
+
 				-- vim.notify("No interface or type definitions found. Resorting to vim.lsp.buf.hover()", vim.log.levels.WARN)
 
 				-- vim.lsp.buf_request(0, "textDocument/hover", POSITION_PARAMS, function(err, result, ctx, config)
@@ -658,10 +665,10 @@ function M.open_primary_window()
 				-- vim.lsp.buf.hover() -- Resort to using the hover provided by the lsp
 				-- return
 			end
-
 			-- vim.notify("Not an interface nor type: ")
 
 
+			local POSITION_PARAMS = vim.lsp.util.make_position_params()
 			vim.lsp.buf_request(0, "textDocument/hover", POSITION_PARAMS,
 				function(err, result)
 					if result ~= nil then
