@@ -18,6 +18,9 @@ for _, v in ipairs(M.config.keys_that_open_nested_types) do
 	table.insert(M.all_keys, v)
 end
 
+vim.cmd('highlight key_hint_color guifg=#FFFFFF guibg=NONE')  -- Keyword color
+vim.cmd('highlight selected_key_hint_color guifg=#BC0000 guibg=NONE')  -- Keyword color
+
 local selected_key_hint_color_namespace = vim.api.nvim_create_namespace("selected_key_hint_color_namespace")
 
 ---@class Item
@@ -165,10 +168,6 @@ function M.handle_input(input)
 		-- vim.notify("open_secondary_window(" .. index_of_input .. ") " .. tostring(index_of_input) .. " " .. input)
 
 		M.open_secondary_window(index_of_input)
-
-
-		vim.cmd('highlight white guifg=#FFFFFF guibg=NONE')  -- Keyword color
-		vim.cmd('highlight selected_key_hint_color guifg=#BC0000 guibg=NONE')  -- Keyword color
 
 		for _, win_id in ipairs(M.main_window_key_hint_win_ids) do
 			local buf = vim.api.nvim_win_get_buf(win_id)
