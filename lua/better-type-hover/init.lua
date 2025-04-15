@@ -1,9 +1,9 @@
 ---@class config
----@field fold_lines_after_line integer - default 30
+---@field fold_lines_after_line integer|nil - default 30
 ---@field openTypeDocKeymap string|nil - default <C-P>. Set to '' to disable
----@field keys_that_open_nested_types string[] - default <C-P>. Set to '' to disable
----@field types_to_not_expand string[] - if a type is in this list, a type hint letter wont appear next to it in the main_window
----@field fallback_to_old_on_anything_but_interface_and_type boolean -- default is true
+---@field keys_that_open_nested_types string[]|nil - default <C-P>. Set to '' to disable
+---@field types_to_not_expand string[]|nil - if a type is in this list, a type hint letter wont appear next to it in the main_window
+---@field fallback_to_old_on_anything_but_interface_and_type boolean|nil -- default is true
 
 local M = {}
 
