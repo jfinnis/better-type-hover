@@ -50,9 +50,9 @@ vim.cmd('highlight key_hint_color guifg=#FFFFFF guibg=NONE') -- white
 vim.cmd('highlight selected_key_hint_color guifg=#BC0000 guibg=NONE') -- red 
 
 -- If you want to customize the fallback window use:
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
   vim.lsp.handlers.hover,
-  { border = "rounded" }
+  {}  -- e.g. { border = "rounded" }
 )
 ```
 
