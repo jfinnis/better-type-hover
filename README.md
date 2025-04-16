@@ -1,3 +1,4 @@
+*If you find this plugin useful, consider giving it a ⭐ so I know how many are using it. The more people, the more love it gets (maintenance & features)!*
 
 # The problem
 
