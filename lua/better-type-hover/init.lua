@@ -640,7 +640,8 @@ function M.open_primary_window()
 				end
 
 				if M.config.fallback_to_old_on_anything_but_interface_and_type == true then
-					vim.lsp.buf.hover()
+					require('pretty_hover').hover()
+					-- vim.lsp.buf.hover()
 					return
 				end
 
